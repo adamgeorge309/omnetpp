@@ -86,5 +86,5 @@ jobs:
           pattern: *linux*
 
       - name: check
-        run: |
+        run:
           ls
