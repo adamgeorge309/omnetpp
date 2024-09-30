@@ -25,6 +25,6 @@ jobs:
       uses: docker://fedora:latest
       with:
         args: 
-          sh -c "ls && cp configure.user.dist configure.user &&
+          sh -c "ls && cp configure.user.dist configure.user && ls && 
              source setenv &&
              ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no"
