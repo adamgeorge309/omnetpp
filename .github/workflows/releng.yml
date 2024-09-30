@@ -80,7 +80,7 @@ jobs:
     needs: build_ide
     runs-on: ubuntu-latest
 
-steps:
-  - uses: actions/download-artifact@v4
-  - name: Display structure of downloaded files
-    run: ls -R
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: Display structure of downloaded files
+        run: ls -R
