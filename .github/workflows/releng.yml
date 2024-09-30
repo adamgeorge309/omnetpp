@@ -1,0 +1,263 @@
+name: Build release
+
+on:
+  push:
+    branches: ["omnetpp-6.x"]
+  workflow_dispatch:  # allows manual execution
+
+jobs:
+  build-ide:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: "omnetpp-6.x"
+      # uncomment for caching
+      # - uses: actions/cache@v4
+      #   id: cache-ide
+      #   with:
+      #     path: releng/dist
+      #     key: ide-${{ hashFiles('src/**', 'ui/**', 'include/**', 'python/**', 'releng/**') }}
+      #     enableCrossOsArchive: true
+      # - if: ${{ steps.cache-ide.outputs.cache-hit != 'true' }}
+      - name: build ide
+        continue-on-error: true
+        run: |
+          cd releng
+          ./build-omnetpp-in-docker
+      - name: upload linux-x86_64
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-x86_64
+          path: |
+            ${{ github.workspace }}/releng/dist/*linux-x86_64*
+          if-no-files-found: error
+          retention-days: 10
+      - name: upload macos-aarch64
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-aarch64
+          path: |
+            ${{ github.workspace }}/releng/dist/*macos-aarch64*
+          if-no-files-found: error
+          retention-days: 10
+      - name: upload windows-x86_64
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-x86_64
+          path: |
+            ${{ github.workspace }}/releng/dist/*windows-x86_64*
+          if-no-files-found: error
+          retention-days: 10
+
+  install-on-ubuntu-native:   # natively in github actions ubuntu runner, without docker
+    needs: build-ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*linux-x86_64*"  
+      - name: Install release
+        run: |
+          cd linux-x86_64
+          tar -xf *linux-x86_64.tgz
+          cd omnetpp-6.1
+          sudo apt update
+          ./install.sh -y
+          source setenv
+          cd samples/aloha
+          ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-ubuntu:
+    needs: build-ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*linux-x86_64*"
+      - name: Install release
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ubuntu:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/linux-x86_64
+            tar -xf *linux-x86_64.tgz
+            cd omnetpp-6.1
+            apt update
+            ./install.sh -y
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-fedora:
+    needs: build-ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*linux-x86_64*"
+      - name: Install release
+        uses: addnab/docker-run-action@v3
+        with:
+          image: fedora:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/linux-x86_64
+            tar -xf *linux-x86_64.tgz
+            cd omnetpp-6.1
+            ./install.sh -y
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-arch:
+    needs: build-ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*linux-x86_64*"
+      - name: Install release
+        uses: addnab/docker-run-action@v3
+        with:
+          image: archlinux:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/linux-x86_64
+            tar -xf *linux-x86_64.tgz
+            cd omnetpp-6.1
+            pacman -Syy
+            ./install.sh -y
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-opensuse:
+    needs: build-ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*linux-x86_64*"
+      - name: Install release
+        uses: addnab/docker-run-action@v3
+        with:
+          image: opensuse/tumbleweed:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/linux-x86_64
+            tar -xf *linux-x86_64.tgz
+            cd omnetpp-6.1
+            zypper refresh
+            ./install.sh -y
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-almalinux:
+    needs: build-ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*linux-x86_64*"
+      - name: Install release
+        uses: addnab/docker-run-action@v3
+        with:
+          image: almalinux:9
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/linux-x86_64
+            tar -xf *linux-x86_64.tgz
+            cd omnetpp-6.1
+            ./install.sh -y --no-3d
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-debian:
+    needs: build-ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*linux-x86_64*"
+      - name: Install release
+        uses: addnab/docker-run-action@v3
+        with:
+          image: debian:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/linux-x86_64
+            tar -xf *linux-x86_64.tgz
+            cd omnetpp-6.1
+            apt update
+            ./install.sh -y
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-macos:
+    needs: build-ide
+    runs-on: macos-14
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*macos-aarch64*"
+      - name: Install release
+        run: |
+          cd macos-aarch64
+          tar -xf *macos-aarch64*.tgz
+          cd omnetpp-6.1
+          ./install.sh -y
+          source setenv
+          cd samples/aloha
+          ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  install-on-windows:
+    needs: build-ide
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        name: Download release
+        with:
+          pattern: "*windows-x86_64*"
+      - uses: msys2/setup-msys2@v2
+        name: Setup MSYS
+        with:
+          install: >-
+            unzip
+      - shell: msys2 {0}
+        name: Install release
+        run: |
+          cd windows-x86_64
+          # 7z x *windows-x86_64*.zip
+          unzip *windows-x86_64*.zip
+          cd omnetpp-6.1
+          # .\mingwenv.cmd -c "./install.sh -y && . setenv && cd samples/aloha &&./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s"
+          ./install.sh -y && . setenv && cd samples/aloha &&./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
