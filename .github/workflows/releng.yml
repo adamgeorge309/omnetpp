@@ -2,7 +2,7 @@ name: Build release
 
 on:
   push:
-      branches: [ "omnetpp-6.x" ]
+    branches: ["omnetpp-6.x"]
   workflow_dispatch: # allows manual execution
 
 jobs:
@@ -27,24 +27,24 @@ jobs:
   #       image: fedora:latest
   #       options: -v ${{ github.workspace }}:/omnetpp
   #       shell: bash
-        # run: |
-        #   echo 'XXXX'
+  # run: |
+  #   echo 'XXXX'
 
-        #   find -name omnetpp
+  #   find -name omnetpp
 
-        #   ls
+  #   ls
 
-        #   cd omnetpp
+  #   cd omnetpp
 
-        #   ls
+  #   ls
 
-        #   cp configure.user.dist configure.user
+  #   cp configure.user.dist configure.user
 
-        #   . setenv
+  #   . setenv
 
-        #   ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
+  #   ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
 
-        #   make
+  #   make
   # build_releng:
   #   runs-on: ubuntu-latest
 
@@ -62,31 +62,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: 'omnetpp-6.x'
-    - name: build-ide
-      run: |
-        cd releng
-        ./build-omnetpp-in-docker
-    - name: upload releases
-      uses: actions/upload-artifact@v4
-      with:
-        path: |
-          ${{ github.workspace }}/releng/dist/
-        if-no-files-found: ignore
+      - uses: actions/checkout@v4
+        with:
+          ref: "omnetpp-6.x"
+      - name: build-ide
+        run: |
+          cd releng
+          ./build-omnetpp-in-docker
+      - name: upload releases
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            ${{ github.workspace }}/releng/dist/
+          if-no-files-found: ignore
 
   build-linux:
     needs: build_ide
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          path: dist
-          pattern: *-omnetpp-6.1-linux-x86_64.tgz
-          overwrite: true
-
-      - name: check
-        run:
-          ls
+steps:
+  - uses: actions/download-artifact@v4
+  - name: Display structure of downloaded files
+    run: ls -R
