@@ -25,4 +25,4 @@ jobs:
       with: 
         image: fedora:latest
         run:
-          ls
+          find -name omnetpp
