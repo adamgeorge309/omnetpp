@@ -25,4 +25,4 @@ jobs:
       with: 
         image: fedora:latest
         run:
-          echo 'XXXX'
+          ls
