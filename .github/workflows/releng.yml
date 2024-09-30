@@ -24,7 +24,8 @@ jobs:
     - name: copy
       uses: docker://fedora:latest
       with:
-        args: 
-          sh -c "ls && cp configure.user.dist configure.user && ls && 
-             source setenv &&
-             ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no"
+        args:
+          cp configure.user.dist configure.user
+          . setenv
+          ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
+        
