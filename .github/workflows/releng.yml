@@ -16,3 +16,6 @@ jobs:
     - name: helloworld
       run:
         echo 'XXXX'
+
+    - name: dockertest
+      run: docker --version
