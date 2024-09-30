@@ -6,27 +6,27 @@ on:
   workflow_dispatch: # allows manual execution
 
 jobs:
-  build_release:
-    runs-on: ubuntu-latest
+  # build_release:
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: 'omnetpp-6.x'
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #     with:
+  #       ref: 'omnetpp-6.x'
 
-    - name: helloworld
-      run:
-        echo 'XXXX'
+  #   - name: helloworld
+  #     run:
+  #       echo 'XXXX'
 
-    - name: dockertest
-      run: docker --version
+  #   - name: dockertest
+  #     run: docker --version
 
-    - name: docker run
-      uses: addnab/docker-run-action@v3
-      with:
-        image: fedora:latest
-        options: -v ${{ github.workspace }}:/omnetpp
-        shell: bash
+  #   - name: docker run
+  #     uses: addnab/docker-run-action@v3
+  #     with:
+  #       image: fedora:latest
+  #       options: -v ${{ github.workspace }}:/omnetpp
+  #       shell: bash
         # run: |
         #   echo 'XXXX'
 
@@ -45,18 +45,18 @@ jobs:
         #   ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
 
         #   make
-  build_releng:
-    runs-on: ubuntu-latest
+  # build_releng:
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: 'omnetpp-6.x'
-    - name: build-ide
-      run: |
-        cd releng
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #     with:
+  #       ref: 'omnetpp-6.x'
+  #   - name: build-ide
+  #     run: |
+  #       cd releng
 
-        ./build-omnetpp-ide-linux
+  #       ./build-omnetpp-ide-linux
 
   build_ide:
     runs-on: ubuntu-latest
@@ -83,7 +83,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: dist
-          pattern: *linux*
+          pattern: *-omnetpp-6.1-linux-x86_64.tgz
 
       - name: check
         run:
