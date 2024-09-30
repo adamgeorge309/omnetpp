@@ -27,7 +27,8 @@ jobs:
         image: fedora:latest
         run:
           echo 'XXXX'
-          
-          find -name omnetpp
 
-          ls
+    - name: copy
+      uses: docker://fedora:latest
+      with:
+        args: ls
