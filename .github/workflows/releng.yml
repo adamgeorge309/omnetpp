@@ -43,3 +43,5 @@ jobs:
           . setenv
           
           ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
+
+          make
