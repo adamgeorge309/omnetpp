@@ -21,6 +21,8 @@ jobs:
       run: docker --version
 
     - name: docker run
-      run: 
-        docker run -i -t fedora:latest /bin/bash
-        echo 'XXX'
+      uses: addnab/docker-run-action@v3
+      with: 
+        image: fedora:latest
+        run:
+          echo 'XXXX'
