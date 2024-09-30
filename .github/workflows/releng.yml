@@ -25,4 +25,5 @@ jobs:
       with: 
         image: fedora:latest
         run:
+          echo 'XXXX'
           find -name omnetpp
