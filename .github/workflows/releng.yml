@@ -21,4 +21,5 @@ jobs:
       run: docker --version
 
     - name: docker run
-      run: docker run -i -t fedora:latest /bin/bash && echo 'XXX'
+      run: docker run -i -t fedora:latest /bin/bash
+           echo 'XXX'
