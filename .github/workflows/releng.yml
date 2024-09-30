@@ -26,6 +26,7 @@ jobs:
       with: 
         image: fedora:latest
         options: -v ${{ github.workspace }}:/omnetpp
+        shell: bash
         run: |
           echo 'XXXX'
           
@@ -39,6 +40,6 @@ jobs:
 
           cp configure.user.dist configure.user
 
-          "source setenv"
+          ". setenv"
           
           ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
