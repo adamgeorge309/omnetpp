@@ -85,6 +85,7 @@ jobs:
         with:
           path: dist
           pattern: *-omnetpp-6.1-linux-x86_64.tgz
+          overwrite: true
 
       - name: check
         run:
