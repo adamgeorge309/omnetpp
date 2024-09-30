@@ -21,11 +21,14 @@ jobs:
     - name: dockertest
       run: docker --version
 
-    - name: copy
-      uses: docker://fedora:latest
-      with:
-        args:
-          cp configure.user.dist configure.user
-          . setenv
-          ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
-        
+    - name: docker run
+      uses: addnab/docker-run-action@v3
+      with: 
+        image: fedora:latest
+        options: -v ${{ github.workspace }}:/var/www
+        run: |
+          echo 'XXXX'
+          
+          find -name omnetpp
+
+          ls
