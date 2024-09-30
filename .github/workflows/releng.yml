@@ -73,5 +73,18 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         path: |
-          ${{ github.workspace }}/releng/dist/*.tgz
+          ${{ github.workspace }}/releng/dist/
         if-no-files-found: ignore
+
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          pattern: *linux*
+
+      - name: check
+        run: |
+          ls
