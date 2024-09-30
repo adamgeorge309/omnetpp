@@ -23,13 +23,13 @@ jobs:
 
     - name: docker run
       uses: addnab/docker-run-action@v3
-      with: 
+      with:
         image: fedora:latest
         options: -v ${{ github.workspace }}:/omnetpp
         shell: bash
         # run: |
         #   echo 'XXXX'
-          
+
         #   find -name omnetpp
 
         #   ls
@@ -41,7 +41,7 @@ jobs:
         #   cp configure.user.dist configure.user
 
         #   . setenv
-          
+
         #   ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
 
         #   make
@@ -55,7 +55,7 @@ jobs:
     - name: build-ide
       run: |
         cd releng
-        
+
         ./build-omnetpp-ide-linux
 
   build_ide:
@@ -69,3 +69,9 @@ jobs:
       run: |
         cd releng
         ./build-omnetpp-in-docker
+    - name: upload releases
+      uses: actions/upload-artifact@v4
+      with:
+        path: |
+          ${{ github.workspace }}/releng/dist/*.tgz
+        if-no-files-found: ignore
