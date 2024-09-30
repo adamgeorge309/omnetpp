@@ -27,21 +27,33 @@ jobs:
         image: fedora:latest
         options: -v ${{ github.workspace }}:/omnetpp
         shell: bash
-        run: |
-          echo 'XXXX'
+        # run: |
+        #   echo 'XXXX'
           
-          find -name omnetpp
+        #   find -name omnetpp
 
-          ls
+        #   ls
 
-          cd omnetpp
+        #   cd omnetpp
 
-          ls
+        #   ls
 
-          cp configure.user.dist configure.user
+        #   cp configure.user.dist configure.user
 
-          . setenv
+        #   . setenv
           
-          ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
+        #   ./configure WITH_LIBXML=yes WITH_QTENV=yes WITH_OSG=yes WITH_OSGEARTH=no
 
-          make
+        #   make
+  build_releng:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: 'omnetpp-6.x'
+    - name: build-ide
+      run: |
+        cd releng
+        
+        ./build-omnetpp-ide-linux
