@@ -76,7 +76,7 @@ jobs:
             ${{ github.workspace }}/releng/dist/
           if-no-files-found: ignore
 
-  build-linux:
+  build-ubuntu:
     needs: build_ide
     runs-on: ubuntu-latest
 
@@ -111,4 +111,40 @@ jobs:
             cd omnetpp-6.1
             ./install.sh -y
 
-            
+  build-arch:
+    needs: build_ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: docker run
+        uses: addnab/docker-run-action@v3
+        with:
+          image: archlinux:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            ls
+            cd artifact
+            tar -xf *linux*.tgz
+            cd omnetpp-6.1
+            ./install.sh -y
+
+  build-opensuse:
+    needs: build_ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: docker run
+        uses: addnab/docker-run-action@v3
+        with:
+          image: opensuse/tumblewweed:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            ls
+            cd artifact
+            tar -xf *linux*.tgz
+            cd omnetpp-6.1
+            ./install.sh -y
