@@ -89,6 +89,7 @@ jobs:
         run: |
           ls -R
           cd artifact
+          ls
           tar -xf *linux*.tgz
           ls
           cd omnetpp-6.1
