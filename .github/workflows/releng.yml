@@ -106,7 +106,7 @@ jobs:
           shell: bash
           run: |
             ls
-            cd artifact
+            cd omnetpp/artifact
             tar -xf *linux*.tgz
             cd omnetpp-6.1
             ./install.sh -y
