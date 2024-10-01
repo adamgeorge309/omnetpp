@@ -90,3 +90,23 @@ jobs:
           ls
           cd omnetpp-6.1
           ./install.sh -y
+
+  build-fedora:
+    needs: build_ide
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: docker run
+        uses: addnab/docker-run-action@v3
+        with:
+          image: fedora:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            ls
+            tar -xf *linux*.tgz
+            cd omnetpp-6.1
+            ./install.sh -y
+
+            
