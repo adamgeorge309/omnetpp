@@ -67,6 +67,8 @@ jobs:
           ref: "omnetpp-6.x"
       - name: build-ide
         run: |
+          echo 'XXXX'
+          echo ${{ github.run_id }}
           cd releng
           ./build-omnetpp-in-docker
       - name: upload releases
