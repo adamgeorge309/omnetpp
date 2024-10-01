@@ -88,4 +88,4 @@ jobs:
       - name: get linux release
         uses: actions/download-artifact@v4
         with:
-          pattern: *.linux*.tgz
+          name: *.linux*.tgz
