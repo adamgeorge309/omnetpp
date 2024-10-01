@@ -165,3 +165,14 @@ jobs:
           ls
           cd omnetpp-6.1
           ./install.sh -y
+
+  get-source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: download
+        run: wget https://github.com/adamgeorge309/omnetpp/actions/runs/11128684843/artifacts/2001659797
+      - name: list
+        run: |
+          ls
+          ls -R
