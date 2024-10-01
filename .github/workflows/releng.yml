@@ -86,9 +86,10 @@ jobs:
         run: ls -R
       - name: install
         run: |
+          cd artifact
           tar -xf *linux*.tgz
           ls
-          cd artifact/omnetpp-6.1
+          cd omnetpp-6.1
           ./install.sh -y
 
   build-fedora:
@@ -105,8 +106,9 @@ jobs:
           shell: bash
           run: |
             ls
+            cd artifact
             tar -xf *linux*.tgz
-            cd artifact/omnetpp-6.1
+            cd omnetpp-6.1
             ./install.sh -y
 
             
