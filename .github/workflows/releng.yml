@@ -148,3 +148,19 @@ jobs:
             tar -xf *linux*.tgz
             cd omnetpp-6.1
             ./install.sh -y
+
+  build-macos:
+    needs: build_ide
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: Display structure of downloaded files
+        run: ls -R
+      - name: install
+        run: |
+          cd artifact
+          tar -xf *aarch64*.tgz
+          ls
+          cd omnetpp-6.1
+          ./install.sh -y
