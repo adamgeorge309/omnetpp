@@ -86,7 +86,7 @@ jobs:
         run: ls -R
       - name: install
         run: |
-          tar -xf *linux.tgz
+          tar -xf *linux*.tgz
           ls
           cd omnetpp-6.1
           ./install.sh -y
