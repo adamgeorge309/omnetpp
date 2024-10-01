@@ -75,6 +75,7 @@ jobs:
           path: |
             ${{ github.workspace }}/releng/dist/
           if-no-files-found: ignore
+          retention-days: 1
 
   build-ubuntu:
     needs: build_ide
