@@ -86,6 +86,7 @@ jobs:
         run: ls -R
       - name: install
         run: |
+          ls -R
           cd artifact
           tar -xf *linux*.tgz
           ls
@@ -105,7 +106,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            ls
+            ls -R
             cd omnetpp/artifact
             tar -xf *linux*.tgz
             cd omnetpp-6.1
@@ -124,7 +125,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            ls
+            ls -R
             cd omnetpp/artifact
             tar -xf *linux*.tgz
             cd omnetpp-6.1
@@ -139,11 +140,11 @@ jobs:
       - name: docker run
         uses: addnab/docker-run-action@v3
         with:
-          image: opensuse/tumblewweed:latest
+          image: opensuse/tumbleweed:latest
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            ls
+            ls -R
             cd artifact
             tar -xf *linux*.tgz
             cd omnetpp-6.1
