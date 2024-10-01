@@ -110,8 +110,14 @@ jobs:
           run: |
             ls -R
             cd omnetpp/artifact
+            ls
+            echo "----"
             tar -xf *linux*.tgz
+            ls
+            echo "----"
             cd omnetpp-6.1
+            ls
+            echo "----"
             ./install.sh -y
 
   build-arch:
