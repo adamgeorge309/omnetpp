@@ -190,6 +190,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: |
-            ${{ github.workspace }}/releng/dist/
+            ${{ github.workspace }}/artifact/
           if-no-files-found: ignore
           retention-days: 1
