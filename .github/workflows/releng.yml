@@ -175,7 +175,7 @@ jobs:
 
   build-macos:
     needs: get-source
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/download-artifact@v4
@@ -194,7 +194,7 @@ jobs:
 
   build-windows:
     needs: get-source
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/download-artifact@v4
