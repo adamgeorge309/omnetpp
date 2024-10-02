@@ -94,7 +94,7 @@ jobs:
           cd artifact
           ls
           echo "----"
-          tar -xf *linux*.tgz
+          tar -xf *linux-x86_64.tgz
           ls
           echo "----"
           cd omnetpp-6.1
