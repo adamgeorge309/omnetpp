@@ -180,6 +180,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: dawidd6/action-download-artifact@v6
         with:
-          run-id: 11129275974
+          run_id: 11129275974
