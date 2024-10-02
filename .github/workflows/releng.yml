@@ -203,7 +203,7 @@ jobs:
       - name: install
         run: |
           cd artifact
-          7z x *windows-x86_64*.tgz
+          7z x t tar *windows-x86_64*.tgz
           ls
           cd omnetpp-6.1
           ./install.sh -y
