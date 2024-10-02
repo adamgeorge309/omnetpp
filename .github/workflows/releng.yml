@@ -155,7 +155,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            cd artifact
+            cd omnetpp/artifact
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             ./install.sh -y
@@ -170,7 +170,7 @@ jobs:
         run: ls -R
       - name: install
         run: |
-          cd artifact
+          cd omnetpp/artifact
           tar -xf *macos-aarch64*.tgz
           ls
           cd omnetpp-6.1
