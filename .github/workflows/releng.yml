@@ -175,6 +175,8 @@ jobs:
           ls
           cd omnetpp-6.1
           ./install.sh -y
+          source setenv
+          ls
 
   get-source:
     runs-on: ubuntu-latest
