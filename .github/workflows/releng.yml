@@ -183,3 +183,6 @@ jobs:
       - uses: dawidd6/action-download-artifact@v6
         with:
           run_id: 11129275974
+      - name: list
+        run: |
+          ls -R
