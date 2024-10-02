@@ -175,7 +175,7 @@ jobs:
 
   build-macos:
     needs: get-source
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/download-artifact@v4
@@ -185,6 +185,25 @@ jobs:
         run: |
           cd artifact
           tar -xf *macos-aarch64*.tgz
+          ls
+          cd omnetpp-6.1
+          ./install.sh -y
+          source setenv
+          cd samples/aloha
+          ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  build-windows:
+    needs: get-source
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: Display structure of downloaded files
+        run: ls -R
+      - name: install
+        run: |
+          cd artifact
+          7z x *windows-x86_64*.tgz
           ls
           cd omnetpp-6.1
           ./install.sh -y
