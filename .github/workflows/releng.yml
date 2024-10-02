@@ -206,6 +206,7 @@ jobs:
           7z x *windows-x86_64*.zip
           ls
           cd omnetpp-6.1
+          ls
           mingwenv.cmd
           ./install.sh -y
           . setenv
