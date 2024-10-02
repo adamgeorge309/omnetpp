@@ -90,10 +90,13 @@ jobs:
       - name: install
         run: |
           ls -R
+          echo "----"
           cd artifact
           ls
+          echo "----"
           tar -xf *linux*.tgz
           ls
+          echo "----"
           cd omnetpp-6.1
           ./install.sh -y
 
