@@ -175,7 +175,7 @@ jobs:
         run: ls -R
       - name: install
         run: |
-          cd omnetpp/artifact
+          cd artifact
           tar -xf *macos-aarch64*.tgz
           ls
           cd omnetpp-6.1
