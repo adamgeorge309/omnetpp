@@ -80,7 +80,7 @@ jobs:
           retention-days: 1
 
   build-ubuntu:
-    needs: build_ide
+    needs: get-source
     runs-on: ubuntu-latest
 
     steps:
