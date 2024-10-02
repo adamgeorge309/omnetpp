@@ -208,7 +208,7 @@ jobs:
           cd omnetpp-6.1
           mingwenv.cmd
           ./install.sh -y
-          source setenv
+          . setenv
           cd samples/aloha
           ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
