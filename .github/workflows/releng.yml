@@ -125,7 +125,7 @@ jobs:
             ./install.sh -y
             source setenv
             cd samples/aloha
-            opp_run -u Cmdenv --sim-time-limit=10s
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-arch:
     needs: get-source
@@ -146,7 +146,8 @@ jobs:
             pacman -Syy
             ./install.sh -y
             source setenv
-            ls
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-opensuse:
     needs: get-source
@@ -184,7 +185,8 @@ jobs:
           cd omnetpp-6.1
           ./install.sh -y
           source setenv
-          ls
+          cd samples/aloha
+          ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   get-source:
     runs-on: ubuntu-latest
