@@ -140,6 +140,7 @@ jobs:
             cd omnetpp/artifact
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
+            pacman -Syy
             ./install.sh -y
             source setenv
             ls
