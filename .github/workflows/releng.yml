@@ -207,7 +207,7 @@ jobs:
           ls
           cd omnetpp-6.1
           ls
-          ./mingwenv.cmd
+          .\mingwenv.cmd
           ./install.sh -y
           . setenv
           cd samples/aloha
