@@ -206,7 +206,7 @@ jobs:
           7z x *windows-x86_64*.zip
           ls
           cd omnetpp-6.1
-          ./install.sh -y
+          install.sh -y
           source setenv
           cd samples/aloha
           ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
