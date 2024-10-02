@@ -209,7 +209,7 @@ jobs:
           ls
           .\mingwenv.cmd
           ./install.sh -y
-          . setenv
+          source setenv
           cd samples/aloha
           ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
