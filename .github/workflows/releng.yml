@@ -98,7 +98,7 @@ jobs:
           ls
           echo "----"
           cd omnetpp-6.1
-          apt update
+          sudo apt update
           ./install.sh -y
 
   build-fedora:
