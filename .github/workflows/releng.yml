@@ -141,6 +141,8 @@ jobs:
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             ./install.sh -y
+            source setenv
+            ls
 
   build-opensuse:
     needs: get-source
@@ -159,6 +161,8 @@ jobs:
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             ./install.sh -y
+            source setenv
+            ls
 
   build-macos:
     needs: get-source
