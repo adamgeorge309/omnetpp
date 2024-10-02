@@ -166,6 +166,7 @@ jobs:
             cd omnetpp/artifact
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
+            zypper refresh
             ./install.sh -y
             source setenv
             ls
