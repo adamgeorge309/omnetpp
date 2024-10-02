@@ -123,6 +123,9 @@ jobs:
             ls
             echo "----"
             ./install.sh -y
+            source setenv
+            cd samples/aloha
+            opp_run -u Cmdenv --sim-time-limit=10s
 
   build-arch:
     needs: get-source
