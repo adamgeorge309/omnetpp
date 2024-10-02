@@ -113,7 +113,6 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            ls -R
             cd omnetpp/artifact
             ls
             echo "----"
@@ -138,7 +137,6 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            ls -R
             cd omnetpp/artifact
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
@@ -157,7 +155,6 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            ls -R
             cd artifact
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
