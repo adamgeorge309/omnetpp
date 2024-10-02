@@ -168,6 +168,8 @@ jobs:
             ./install.sh -y
             source setenv
             ls
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-macos:
     needs: get-source
