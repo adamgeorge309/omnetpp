@@ -225,6 +225,7 @@ jobs:
             cd omnetpp-6.1
             ls
             echo "----"
+            sudo apt update
             ./install.sh -y
             source setenv
             cd samples/aloha
