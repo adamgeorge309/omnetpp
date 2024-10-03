@@ -198,7 +198,7 @@ jobs:
             cd omnetpp-6.1
             ls
             echo "----"
-            ./install.sh -y
+            ./install.sh -y --no-3d
             source setenv
             cd samples/aloha
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
