@@ -58,7 +58,7 @@ jobs:
 
   #       ./build-omnetpp-ide-linux
 
-  # build_ide:
+  # build-ide:
   #   runs-on: ubuntu-latest
 
   #   steps:
@@ -79,8 +79,26 @@ jobs:
   #         if-no-files-found: ignore
   #         retention-days: 1
 
+  build-ide:  # for debugging
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: dawidd6/action-download-artifact@v6
+        with:
+          run_id: 11159647668
+      - name: list
+        run: |
+          ls -R
+      - name: upload releases
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            ${{ github.workspace }}/artifact/
+          if-no-files-found: ignore
+          retention-days: 1
+
   build-ubuntu:
-    needs: get-source
+    needs: build-ide
     runs-on: ubuntu-latest
 
     steps:
@@ -105,7 +123,7 @@ jobs:
           ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-fedora:
-    needs: get-source
+    needs: build-ide
     runs-on: ubuntu-latest
 
     steps:
@@ -132,7 +150,7 @@ jobs:
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-arch:
-    needs: get-source
+    needs: build-ide
     runs-on: ubuntu-latest
 
     steps:
@@ -154,7 +172,7 @@ jobs:
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-opensuse:
-    needs: get-source
+    needs: build-ide
     runs-on: ubuntu-latest
 
     steps:
@@ -177,7 +195,7 @@ jobs:
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-almalinux:
-    needs: get-source
+    needs: build-ide
     runs-on: ubuntu-latest
 
     steps:
@@ -201,7 +219,7 @@ jobs:
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-debian:
-    needs: get-source
+    needs: build-ide
     runs-on: ubuntu-latest
 
     steps:
@@ -222,14 +240,14 @@ jobs:
             cd omnetpp-6.1
             ls
             echo "----"
-            sudo apt update
+            apt update
             ./install.sh -y
             source setenv
             cd samples/aloha
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-macos:
-    needs: get-source
+    needs: build-ide
     runs-on: macos-14
 
     steps:
@@ -248,7 +266,7 @@ jobs:
           ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-windows:
-    needs: get-source
+    needs: build-ide
     runs-on: windows-latest
 
     steps:
@@ -267,21 +285,3 @@ jobs:
           . setenv
           cd samples/aloha
           ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
-
-  get-source:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: dawidd6/action-download-artifact@v6
-        with:
-          run_id: 11159647668
-      - name: list
-        run: |
-          ls -R
-      - name: upload releases
-        uses: actions/upload-artifact@v4
-        with:
-          path: |
-            ${{ github.workspace }}/artifact/
-          if-no-files-found: ignore
-          retention-days: 1
