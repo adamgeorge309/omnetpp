@@ -58,26 +58,26 @@ jobs:
 
   #       ./build-omnetpp-ide-linux
 
-  build_ide:
-    runs-on: ubuntu-latest
+  # build_ide:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: "omnetpp-6.x"
-      - name: build-ide
-        run: |
-          echo 'XXXX'
-          echo ${{ github.run_id }}
-          cd releng
-          ./build-omnetpp-in-docker
-      - name: upload releases
-        uses: actions/upload-artifact@v4
-        with:
-          path: |
-            ${{ github.workspace }}/releng/dist/
-          if-no-files-found: ignore
-          retention-days: 10
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         ref: "omnetpp-6.x"
+  #     - name: build-ide
+  #       run: |
+  #         echo 'XXXX'
+  #         echo ${{ github.run_id }}
+  #         cd releng
+  #         ./build-omnetpp-in-docker
+  #     - name: upload releases
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         path: |
+  #           ${{ github.workspace }}/releng/dist/
+  #         if-no-files-found: ignore
+  #         retention-days: 1
 
   build-ubuntu:
     needs: get-source
@@ -219,7 +219,7 @@ jobs:
     steps:
       - uses: dawidd6/action-download-artifact@v6
         with:
-          run_id: 11129275974
+          run_id: 11159647668
       - name: list
         run: |
           ls -R
