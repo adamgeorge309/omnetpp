@@ -176,9 +176,63 @@ jobs:
             cd samples/aloha
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
+  build-almalinux:
+    needs: get-source
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: docker run
+        uses: addnab/docker-run-action@v3
+        with:
+          image: almalinux:9
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/artifact
+            ls
+            echo "----"
+            tar -xf *linux-x86_64.tgz
+            ls
+            echo "----"
+            cd omnetpp-6.1
+            ls
+            echo "----"
+            ./install.sh -y
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
+  build-debian:
+    needs: get-source
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: docker run
+        uses: addnab/docker-run-action@v3
+        with:
+          image: debian:latest
+          options: -v ${{ github.workspace }}:/omnetpp
+          shell: bash
+          run: |
+            cd omnetpp/artifact
+            ls
+            echo "----"
+            tar -xf *linux-x86_64.tgz
+            ls
+            echo "----"
+            cd omnetpp-6.1
+            ls
+            echo "----"
+            ./install.sh -y
+            source setenv
+            cd samples/aloha
+            ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
+
   build-macos:
     needs: get-source
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - uses: actions/download-artifact@v4
