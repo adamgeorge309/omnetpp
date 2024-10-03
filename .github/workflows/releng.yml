@@ -100,6 +100,9 @@ jobs:
           cd omnetpp-6.1
           sudo apt update
           ./install.sh -y
+          source setenv
+          cd samples/aloha
+          ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
   build-fedora:
     needs: get-source
