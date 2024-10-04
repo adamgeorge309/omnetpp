@@ -108,18 +108,13 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: Display structure of downloaded files
-        run: ls -R
-      - name: install
+        name: Download release
+        with:
+          pattern: *linux-x86_64.tgz
+      - name: Install release
         run: |
-          ls -R
-          echo "----"
           cd artifact
-          ls
-          echo "----"
           tar -xf *linux-x86_64.tgz
-          ls
-          echo "----"
           cd omnetpp-6.1
           sudo apt update
           ./install.sh -y
@@ -133,7 +128,8 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: docker run
+        name: Download release
+      - name: Install release
         uses: addnab/docker-run-action@v3
         with:
           image: fedora:latest
@@ -141,14 +137,8 @@ jobs:
           shell: bash
           run: |
             cd omnetpp/artifact
-            ls
-            echo "----"
             tar -xf *linux-x86_64.tgz
-            ls
-            echo "----"
             cd omnetpp-6.1
-            ls
-            echo "----"
             ./install.sh -y
             source setenv
             cd samples/aloha
@@ -160,7 +150,8 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: docker run
+        name: Download release
+      - name: Install release
         uses: addnab/docker-run-action@v3
         with:
           image: archlinux:latest
@@ -182,7 +173,8 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: docker run
+        name: Download release
+      - name: Install release
         uses: addnab/docker-run-action@v3
         with:
           image: opensuse/tumbleweed:latest
@@ -195,7 +187,6 @@ jobs:
             zypper refresh
             ./install.sh -y
             source setenv
-            ls
             cd samples/aloha
             ./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
 
@@ -205,7 +196,8 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: docker run
+        name: Download release
+      - name: Install release
         uses: addnab/docker-run-action@v3
         with:
           image: almalinux:9
@@ -213,11 +205,8 @@ jobs:
           shell: bash
           run: |
             cd omnetpp/artifact
-            ls
             tar -xf *linux-x86_64.tgz
-            ls
             cd omnetpp-6.1
-            ls
             ./install.sh -y --no-3d
             source setenv
             cd samples/aloha
@@ -229,7 +218,8 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: docker run
+        name: Download release
+      - name: Install release
         uses: addnab/docker-run-action@v3
         with:
           image: debian:latest
@@ -237,14 +227,8 @@ jobs:
           shell: bash
           run: |
             cd omnetpp/artifact
-            ls
-            echo "----"
             tar -xf *linux-x86_64.tgz
-            ls
-            echo "----"
             cd omnetpp-6.1
-            ls
-            echo "----"
             apt update
             ./install.sh -y
             source setenv
@@ -257,13 +241,11 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: Display structure of downloaded files
-        run: ls -R
-      - name: install
+        name: Download release
+      - name: Install release
         run: |
           cd artifact
           tar -xf *macos-aarch64*.tgz
-          ls
           cd omnetpp-6.1
           ./install.sh -y
           source setenv
@@ -276,19 +258,18 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v4
-      - name: Display structure of downloaded files
-        run: ls -R
+        name: Download release
       - uses: msys2/setup-msys2@v2
+        name: Setup MSYS
         with:
           install: >-
             unzip
       - shell: msys2 {0}
+        name: Install release
         run: |
           cd artifact
           # 7z x *windows-x86_64*.zip
           unzip *windows-x86_64*.zip
-          ls
           cd omnetpp-6.1
-          ls
           # .\mingwenv.cmd -c "./install.sh -y && . setenv && cd samples/aloha &&./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s"
           ./install.sh -y && . setenv && cd samples/aloha &&./aloha -u Cmdenv -c PureAloha1 --sim-time-limit=10s
