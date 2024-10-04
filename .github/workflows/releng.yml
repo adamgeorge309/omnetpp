@@ -111,6 +111,9 @@ jobs:
         name: Download release
         with:
           pattern: "*linux-x86_64.tgz"
+      - name: Display structure of downloaded files
+        run: ls -R
+  
       - name: Install release
         run: |
           cd artifact
