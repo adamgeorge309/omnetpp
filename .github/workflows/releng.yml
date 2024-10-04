@@ -279,6 +279,9 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
       - uses: msys2/setup-msys2@v2
+        with:
+          install: >-
+            unzip
       - shell: msys2 {0}
         run: |
           cd artifact
