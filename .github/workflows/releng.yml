@@ -116,7 +116,6 @@ jobs:
   
       - name: Install release
         run: |
-          cd artifact
           tar -xf *linux-x86_64.tgz
           cd omnetpp-6.1
           sudo apt update
@@ -139,7 +138,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            cd omnetpp/artifact
+            cd omnetpp
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             ./install.sh -y
@@ -161,7 +160,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            cd omnetpp/artifact
+            cd omnetpp
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             pacman -Syy
@@ -184,7 +183,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            cd omnetpp/artifact
+            cd omnetpp
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             zypper refresh
@@ -207,7 +206,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            cd omnetpp/artifact
+            cd omnetpp
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             ./install.sh -y --no-3d
@@ -229,7 +228,7 @@ jobs:
           options: -v ${{ github.workspace }}:/omnetpp
           shell: bash
           run: |
-            cd omnetpp/artifact
+            cd omnetpp
             tar -xf *linux-x86_64.tgz
             cd omnetpp-6.1
             apt update
@@ -247,7 +246,6 @@ jobs:
         name: Download release
       - name: Install release
         run: |
-          cd artifact
           tar -xf *macos-aarch64*.tgz
           cd omnetpp-6.1
           ./install.sh -y
@@ -270,7 +268,6 @@ jobs:
       - shell: msys2 {0}
         name: Install release
         run: |
-          cd artifact
           # 7z x *windows-x86_64*.zip
           unzip *windows-x86_64*.zip
           cd omnetpp-6.1
