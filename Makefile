@@ -286,8 +286,8 @@ ifeq ($(PLATFORM),linux)
 	-@xdg-desktop-menu uninstall $(OMNETPP_RELEASE)-shell.desktop
 	-@xdg-desktop-menu install $(OMNETPP_RELEASE)-shell.desktop
 else ifeq ($(PLATFORM),win32)
-	@cp "$(OMNETPP_ROOT)/$(OMNETPP_PRODUCT) $(OMNETPP_VERSION) IDE.lnk" "$(APPDATA)/Microsoft/Windows/Start Menu/Programs"
-	@cp "$(OMNETPP_ROOT)/$(OMNETPP_PRODUCT) $(OMNETPP_VERSION) Shell.lnk" "$(APPDATA)/Microsoft/Windows/Start Menu/Programs"
+	@cp -f "$(OMNETPP_ROOT)/$(OMNETPP_PRODUCT) $(OMNETPP_VERSION) IDE.lnk" "$(APPDATA)/Microsoft/Windows/Start Menu/Programs"
+	@cp -f "$(OMNETPP_ROOT)/$(OMNETPP_PRODUCT) $(OMNETPP_VERSION) Shell.lnk" "$(APPDATA)/Microsoft/Windows/Start Menu/Programs"
 endif
 
 uninstall-shortcuts:
