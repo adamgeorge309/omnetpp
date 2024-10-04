@@ -282,7 +282,8 @@ jobs:
       - shell: msys2 {0}
         run: |
           cd artifact
-          7z x *windows-x86_64*.zip
+          # 7z x *windows-x86_64*.zip
+          unzip -xf *windows-x86_64*.zip
           ls
           cd omnetpp-6.1
           ls
