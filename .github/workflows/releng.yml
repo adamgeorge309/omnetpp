@@ -110,7 +110,7 @@ jobs:
       - uses: actions/download-artifact@v4
         name: Download release
         with:
-          pattern: *linux-x86_64.tgz
+          pattern: "*linux-x86_64.tgz"
       - name: Install release
         run: |
           cd artifact
