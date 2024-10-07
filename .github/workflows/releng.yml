@@ -83,7 +83,7 @@ jobs:
           path: |
             ${{ github.workspace }}/releng/dist/
           if-no-files-found: ignore
-          retention-days: 10
+          retention-days: 1
 
   build-ide:  # for debugging
     runs-on: ubuntu-latest
