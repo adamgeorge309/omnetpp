@@ -58,7 +58,7 @@ jobs:
 
   #       ./build-omnetpp-ide-linux
 
-  build-ide-orig:
+  build-ide:
     runs-on: ubuntu-latest
 
     steps:
@@ -77,15 +77,32 @@ jobs:
           echo ${{ github.run_id }}
           cd releng
           ./build-omnetpp-in-docker
-      - name: upload releases
+      - name: upload linux-x86_64
         uses: actions/upload-artifact@v4
         with:
+          name: linux-x86_64
           path: |
-            ${{ github.workspace }}/releng/dist/
+            ${{ github.workspace }}/artifact/*linux-x86_64*
+          if-no-files-found: ignore
+          retention-days: 10
+      - name: upload macos-aarch64
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-aarch64
+          path: |
+            ${{ github.workspace }}/artifact/*macos-aarch64*
+          if-no-files-found: ignore
+          retention-days: 10
+      - name: upload windows-x86_64
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-x86_64
+          path: |
+            ${{ github.workspace }}/artifact/*windows-x86_64*
           if-no-files-found: ignore
           retention-days: 10
 
-  build-ide:  # for debugging
+  build-ide-debug:  # for debugging
     runs-on: ubuntu-latest
 
     steps:
