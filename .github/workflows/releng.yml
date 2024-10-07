@@ -70,6 +70,7 @@ jobs:
         with:
           path: .
           key: ide-${{ hashFiles('src/**') }}
+          enableCrossOsArchive: true
       - if: ${{ steps.cache-ide.outputs.cache-hit != 'true' }}
         name: build ide
         continue-on-error: true
