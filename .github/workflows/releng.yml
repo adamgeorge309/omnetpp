@@ -115,7 +115,7 @@ jobs:
           ref: "omnetpp-6.x"
       - uses: actions/cache/restore@v4
         with:
-          path: *linux-x86_64*
+          path: "*linux-x86_64*"
           key: ide-${{ hashFiles('src/**') }}
       - name: list
         run: |
