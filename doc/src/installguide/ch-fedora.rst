@@ -13,7 +13,7 @@ The following Fedora release is covered:
 
 It was tested on the following architectures:
 
--  Intel 64-bit
+-  Intel 64 - bit
 
 Opening a Terminal
 ------------------
