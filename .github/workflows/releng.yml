@@ -84,7 +84,7 @@ jobs:
         with:
           name: linux-x86_64
           path: |
-            ${{ github.workspace }}/artifact/*linux-x86_64*
+            ${{ github.workspace }}/releng/dist/*linux-x86_64*
           if-no-files-found: ignore
           retention-days: 10
       - name: upload macos-aarch64
