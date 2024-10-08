@@ -159,7 +159,7 @@ jobs:
   
       - name: Install release
         run: |
-          cd linux-x86_64
+          # cd linux-x86_64
           tar -xf *linux-x86_64.tgz
           cd omnetpp-6.1
           sudo apt update
