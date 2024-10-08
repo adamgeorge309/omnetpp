@@ -68,7 +68,7 @@ jobs:
       - uses: actions/cache@v4
         id: cache-ide
         with:
-          path: .
+          path: releng/dist
           key: ide-${{ hashFiles('src/**') }}
           enableCrossOsArchive: true
       - if: ${{ steps.cache-ide.outputs.cache-hit != 'true' }}
