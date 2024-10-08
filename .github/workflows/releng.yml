@@ -107,18 +107,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: dawidd6/action-download-artifact@v6
+      # - uses: dawidd6/action-download-artifact@v6
+      #   with:
+      #     run_id: 11159647668
+      - uses: actions/checkout@v4
         with:
-          run_id: 11159647668
+          ref: "omnetpp-6.x"
+      - uses: actions/cache/restore@v4
+        with:
+          path: "*linux-x86_64*"
+          key: ide-${{ hashFiles('src/**') }}
       - name: list
         run: |
           ls -R
-      - uses: actions/cache@v4
-        id: cache
-        with:
-          path: |
-            ./artifact
-          key: ${{ hashFiles('./artifact/**') }}
+      # - uses: actions/cache@v4
+      #   id: cache
+      #   with:
+      #     path: |
+      #       ./artifact
+      #     key: ${{ hashFiles('./artifact/**') }}
       - name: upload linux-x86_64
         uses: actions/upload-artifact@v4
         with:
@@ -149,17 +156,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # - uses: actions/download-artifact@v4
-      #   name: Download release
-      #   with:
-      #     pattern: "*linux-x86_64*"
-      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        name: Download release
         with:
-          ref: "omnetpp-6.x"
-      - uses: actions/cache/restore@v4
-        with:
-          path: "*linux-x86_64*"
-          key: ide-${{ hashFiles('src/**') }}
+          pattern: "*linux-x86_64*"
       - name: Display structure of downloaded files
         run: ls -R
   
