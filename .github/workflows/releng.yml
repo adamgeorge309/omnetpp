@@ -85,7 +85,7 @@ jobs:
           name: linux-x86_64
           path: |
             ${{ github.workspace }}/releng/dist/*linux-x86_64*
-          if-no-files-found: ignore
+          if-no-files-found: error
           retention-days: 10
       - name: upload macos-aarch64
         uses: actions/upload-artifact@v4
@@ -93,7 +93,7 @@ jobs:
           name: macos-aarch64
           path: |
             ${{ github.workspace }}/releng/dist/*macos-aarch64*
-          if-no-files-found: ignore
+          if-no-files-found: error
           retention-days: 10
       - name: upload windows-x86_64
         uses: actions/upload-artifact@v4
@@ -101,7 +101,7 @@ jobs:
           name: windows-x86_64
           path: |
             ${{ github.workspace }}/releng/dist/*windows-x86_64*
-          if-no-files-found: ignore
+          if-no-files-found: error
           retention-days: 10
 
   build-ide-debug:  # for debugging
