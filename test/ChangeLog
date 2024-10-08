@@ -4,7 +4,7 @@
 	It would be pointless to provide a detailed list of all changes here. The new files
 	are listed below; otherwise, use `git log` for a more details.
 
-	- anim/deletesender/*
+	- anim/deletesender / *
 	- anim/inspectorsafety/*
 	- anim/logbuffer/*
 	- common/lib/quantityformattertester.h
