@@ -175,6 +175,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         name: Download release
+        with:
+          pattern: "*linux-x86_64*"
       - name: Install release
         uses: addnab/docker-run-action@v3
         with:
@@ -197,6 +199,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         name: Download release
+        with:
+          pattern: "*linux-x86_64*"
       - name: Install release
         uses: addnab/docker-run-action@v3
         with:
@@ -220,6 +224,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         name: Download release
+        with:
+          pattern: "*linux-x86_64*"
       - name: Install release
         uses: addnab/docker-run-action@v3
         with:
@@ -243,6 +249,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         name: Download release
+        with:
+          pattern: "*linux-x86_64*"
       - name: Install release
         uses: addnab/docker-run-action@v3
         with:
@@ -265,6 +273,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         name: Download release
+        with:
+          pattern: "*linux-x86_64*"
       - name: Install release
         uses: addnab/docker-run-action@v3
         with:
@@ -288,6 +298,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         name: Download release
+        with:
+          pattern: "*macos-aarch64*"
       - name: Install release
         run: |
           cd macos-aarch64
@@ -305,6 +317,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         name: Download release
+        with:
+          pattern: "*windows-x86_64*"
       - uses: msys2/setup-msys2@v2
         name: Setup MSYS
         with:
