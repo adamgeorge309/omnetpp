@@ -104,46 +104,46 @@ jobs:
           if-no-files-found: error
           retention-days: 10
 
-  build-ide-debug:  # for debugging
-    runs-on: ubuntu-latest
+  # build-ide-debug:  # for debugging
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: dawidd6/action-download-artifact@v6
-        with:
-          run_id: 11159647668
-      - name: list
-        run: |
-          ls -R
-      - uses: actions/cache@v4
-        id: cache
-        with:
-          path: |
-            ./artifact
-          key: ${{ hashFiles('./artifact/**') }}
-      - name: upload linux-x86_64
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-x86_64
-          path: |
-            ${{ github.workspace }}/artifact/*linux-x86_64*
-          if-no-files-found: ignore
-          retention-days: 10
-      - name: upload macos-aarch64
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-aarch64
-          path: |
-            ${{ github.workspace }}/artifact/*macos-aarch64*
-          if-no-files-found: ignore
-          retention-days: 10
-      - name: upload windows-x86_64
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-x86_64
-          path: |
-            ${{ github.workspace }}/artifact/*windows-x86_64*
-          if-no-files-found: ignore
-          retention-days: 10
+  #   steps:
+  #     - uses: dawidd6/action-download-artifact@v6
+  #       with:
+  #         run_id: 11159647668
+  #     - name: list
+  #       run: |
+  #         ls -R
+  #     - uses: actions/cache@v4
+  #       id: cache
+  #       with:
+  #         path: |
+  #           ./artifact
+  #         key: ${{ hashFiles('./artifact/**') }}
+  #     - name: upload linux-x86_64
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: linux-x86_64
+  #         path: |
+  #           ${{ github.workspace }}/artifact/*linux-x86_64*
+  #         if-no-files-found: ignore
+  #         retention-days: 10
+  #     - name: upload macos-aarch64
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: macos-aarch64
+  #         path: |
+  #           ${{ github.workspace }}/artifact/*macos-aarch64*
+  #         if-no-files-found: ignore
+  #         retention-days: 10
+  #     - name: upload windows-x86_64
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: windows-x86_64
+  #         path: |
+  #           ${{ github.workspace }}/artifact/*windows-x86_64*
+  #         if-no-files-found: ignore
+  #         retention-days: 10
 
   build-ubuntu:
     needs: build-ide
