@@ -3,7 +3,7 @@ name: Build release
 on:
   push:
     branches: ["omnetpp-6.x"]
-  workflow_dispatch: # allows manual execution
+  workflow_dispatch:  # allows manual execution
 
 jobs:
   # build_release:
