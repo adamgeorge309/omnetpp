@@ -65,11 +65,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: "omnetpp-6.x"
+      - uses: theowenyoung/folder-hash@v3
+        id: hash
+        with:
+          path: |
+            src
       - uses: actions/cache@v4
         id: cache-ide
         with:
           path: releng/dist
-          key: ide-${{ hashFiles('src/**') }}
+          key: ide-${{ steps.hash.outputs.hash }}
           enableCrossOsArchive: true
       - if: ${{ steps.cache-ide.outputs.cache-hit != 'true' }}
         name: build ide
